@@ -33,6 +33,9 @@ export class Client {
       }
     }
 
+    @Column({ type: "varchar", length: 120, unique: true})
+    email: string
+
     @Column({ type: "varchar" })
     telephone: string
 
