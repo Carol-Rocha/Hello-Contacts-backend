@@ -1,4 +1,5 @@
 import { Client } from "./clients.entity"
+import { IsPhoneNumber } from "class-validator"
 import { 
   Column, 
   PrimaryGeneratedColumn, 
@@ -20,6 +21,7 @@ export class Contact {
   email: string
 
   @Column({ type: "varchar" })
+  @IsPhoneNumber("BR")
   telephone: string
 
   @CreateDateColumn({ type: "date" })
