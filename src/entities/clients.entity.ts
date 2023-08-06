@@ -1,4 +1,5 @@
 import { getRounds, hashSync } from "bcryptjs"
+import { IsPhoneNumber } from "class-validator"
 import {
   Entity, 
   PrimaryGeneratedColumn, 
@@ -33,8 +34,13 @@ export class Client {
       }
     }
 
+    @Column({ type: "varchar", length: 120, unique: true})
+    @IsPhoneNumber("BR")
+    email: string
+
     @Column({ type: "varchar" })
     telephone: string
+
 
     @CreateDateColumn({ type: "date" })
     createdAt: string
