@@ -9,7 +9,7 @@ export const ensureClientExistMiddleware: RequestHandler = async (
   res: Response,
   next: NextFunction
 ) => {
-  const clientId: string = req.body.id
+  const clientId: string = req.params.id
 
   const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
   const client = await clientRepository.findOne({
