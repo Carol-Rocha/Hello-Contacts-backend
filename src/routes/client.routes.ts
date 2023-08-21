@@ -7,6 +7,7 @@ import { verifyUserNameExistMiddleware } from "../middlewares/clients/verifyUser
 import { ensureTokenIsValidMiddleware } from "../middlewares/clients/ensureTokenIsValid.middleware";
 import { ensureClientIsOwnerMiddleware } from "../middlewares/clients/ensureClientIsOwner.middleware";
 import { createClientController, deleteClientController, updateClientController } from "../controllers/client.controllers";
+import { verifyClientIsDeletedMiddleware } from "../middlewares/clients/verifyClientIsDeletedMiddleware";
 
 export const clientRoutes: Router = Router()
 
@@ -33,6 +34,7 @@ clientRoutes.delete(
   "/:id",
   ensureTokenIsValidMiddleware,
   ensureClientExistMiddleware,
+  verifyClientIsDeletedMiddleware,
   ensureClientIsOwnerMiddleware,
   deleteClientController
 )
