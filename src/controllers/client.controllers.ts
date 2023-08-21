@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { createClientService } from "../services/clients/createClient.service"
 import { TClientRequest, TClientUpdateRequest } from "../interfaces/clients.interfaces"
 import { updateClientService } from "../services/clients/uptadeClient.service"
+import { deleteClientService } from "../services/clients/deleteClient.service"
 
 export const createClientController = async (
   req: Request,
@@ -21,4 +22,13 @@ export const updateClientController = async (
   const updatedClient = await updateClientService(clientData, clientId)
 
   return res.json(updatedClient)
+}
+
+export const deleteClientController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const {clientId} = res.locals
+  await deleteClientService(clientId)
+  return res.status(204).send()
 }

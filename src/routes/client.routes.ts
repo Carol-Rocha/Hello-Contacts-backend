@@ -6,7 +6,7 @@ import { verifyEmailExistMiddleware } from "../middlewares/clients/verifyEmailEx
 import { verifyUserNameExistMiddleware } from "../middlewares/clients/verifyUserNameExist.middleware";
 import { ensureTokenIsValidMiddleware } from "../middlewares/clients/ensureTokenIsValid.middleware";
 import { ensureClientIsOwnerMiddleware } from "../middlewares/clients/ensureClientIsOwner.middleware";
-import { createClientController, updateClientController } from "../controllers/client.controllers";
+import { createClientController, deleteClientController, updateClientController } from "../controllers/client.controllers";
 
 export const clientRoutes: Router = Router()
 
@@ -27,4 +27,12 @@ clientRoutes.patch(
   verifyUserNameExistMiddleware,
   verifyEmailExistMiddleware, 
   updateClientController
+)
+
+clientRoutes.delete(
+  "/:id",
+  ensureTokenIsValidMiddleware,
+  ensureClientExistMiddleware,
+  ensureClientIsOwnerMiddleware,
+  deleteClientController
 )
