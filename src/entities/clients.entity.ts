@@ -8,7 +8,9 @@ import {
   UpdateDateColumn, 
   DeleteDateColumn, 
   BeforeInsert, 
-  BeforeUpdate} from "typeorm"
+  BeforeUpdate,
+  OneToMany} from "typeorm"
+import { Contact } from "./contacts.entity"
 
 @Entity("clients")
 export class Client {
@@ -50,4 +52,7 @@ export class Client {
 
     @DeleteDateColumn({ type: "date" })
     deletedAt: string
-}
+
+    @OneToMany(() => Contact, contact => contact.client)
+    contacts: Contact[] 
+  }

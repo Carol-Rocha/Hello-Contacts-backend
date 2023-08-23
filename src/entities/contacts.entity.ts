@@ -30,6 +30,6 @@ export class Contact {
   @UpdateDateColumn({ type: "date" })
   updatedAt: string
 
-  @ManyToOne(() => Client)
+  @ManyToOne(() => Client, client => client.contacts)
   client: Client 
 }
