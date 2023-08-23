@@ -8,9 +8,9 @@ export const createContactsController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const {clientId} = res.locals
+  const {clientTokenId} = res.locals
   const contactData: TContactRequest = req.body
-  const newContact = await createContactsService(contactData,clientId)
+  const newContact = await createContactsService(contactData,clientTokenId)
 
   return res.status(201).json(newContact)
 }

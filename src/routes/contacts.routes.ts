@@ -7,8 +7,8 @@ import { ensureClientIsOwnerMiddleware } from "../middlewares/clients/ensureClie
 export const contactsRoutes: Router = Router()
 
 contactsRoutes.post(
-  "/:id", 
-  ensureClientExistMiddleware, 
+  "",
+  ensureTokenIsValidMiddleware, 
   createContactsController
 )
 
