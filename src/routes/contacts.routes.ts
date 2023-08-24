@@ -1,8 +1,6 @@
 import { Router } from "express";
-import { createContactsController, deleteContactsController, listContactsController } from "../controllers/contacts.controllers";
-import { ensureClientExistMiddleware } from "../middlewares/clients/ensureClientExist.middleware";
+import { createContactsController, deleteContactsController, listContactsController, updateContactsController } from "../controllers/contacts.controllers";
 import { ensureTokenIsValidMiddleware } from "../middlewares/clients/ensureTokenIsValid.middleware";
-import { ensureClientIsOwnerMiddleware } from "../middlewares/clients/ensureClientIsOwner.middleware";
 
 export const contactsRoutes: Router = Router()
 
@@ -16,6 +14,12 @@ contactsRoutes.get(
   "",
   ensureTokenIsValidMiddleware,
   listContactsController
+)
+
+contactsRoutes.patch(
+  "/:id",
+  ensureTokenIsValidMiddleware,
+  updateContactsController
 )
 
 contactsRoutes.delete(

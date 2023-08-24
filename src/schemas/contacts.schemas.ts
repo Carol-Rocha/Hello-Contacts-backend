@@ -23,4 +23,4 @@ export const contactSchemaRequest = z.object({
 })
 
 
-export const updatedContactSchema = contactSchemaRequest.partial()
+export const updatedContactSchema = contactSchemaRequest.omit({client:true}).partial()
