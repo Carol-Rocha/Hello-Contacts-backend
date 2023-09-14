@@ -19,8 +19,7 @@ export const contactSchemaRequest = z.object({
   telephone: z.string().refine((value) => /^\d{11}$/.test(value), {
     message: "Telefone inválido"
   }),
-  client: clientSchemaRequest
 })
 
 
-export const updatedContactSchema = contactSchemaRequest.omit({client:true}).partial()
+export const updatedContactSchema = contactSchemaRequest.partial()

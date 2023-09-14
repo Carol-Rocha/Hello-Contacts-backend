@@ -16,8 +16,8 @@ export const createContactsService = async (
   const contact = contactRepository.create({
     ...contactData,
     client: client
-
   })
+  
   await contactRepository.save(contact)
 
   const returnContact: TContact = contactSchema.parse(contact)
