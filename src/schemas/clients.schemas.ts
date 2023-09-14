@@ -1,13 +1,12 @@
-import { z } from "zod"
+import { z } from 'zod'
 
 export const clientSchema = z.object({
   id: z.string(),
   full_name: z.string().max(120),
-  user_name: z.string().max(50),
   email: z.string().email().max(120),
   password: z.string().max(100).min(6),
   telephone: z.string().refine((value) => /^\d{11}$/.test(value), {
-    message: "Telefone inválido"
+    message: 'Telefone inválido'
   }),
   createdAt: z.string().nullish(),
   updatedAt: z.string().nullish(),
