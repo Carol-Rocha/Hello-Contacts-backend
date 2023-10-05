@@ -11,6 +11,7 @@ import { ensureClientIsOwnerMiddleware } from '../middlewares/clients/ensureClie
 import {
   createClientController,
   deleteClientController,
+  retrieveClientController,
   updateClientController
 } from '../controllers/client.controllers'
 import { verifyClientIsDeletedMiddleware } from '../middlewares/clients/verifyClientIsDeleted.middleware'
@@ -22,6 +23,14 @@ clientRoutes.post(
   ensureDataIsValidMiddleware(clientSchemaRequest),
   verifyEmailExistMiddleware,
   createClientController
+)
+
+clientRoutes.get(
+  '/:id',
+  ensureTokenIsValidMiddleware,
+  ensureClientExistMiddleware,
+  ensureClientIsOwnerMiddleware,
+  retrieveClientController
 )
 
 clientRoutes.patch(
