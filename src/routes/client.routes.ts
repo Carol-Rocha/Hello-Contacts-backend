@@ -39,7 +39,6 @@ clientRoutes.patch(
   ensureTokenIsValidMiddleware,
   ensureClientExistMiddleware,
   ensureClientIsOwnerMiddleware,
-  verifyEmailExistMiddleware,
   updateClientController
 )
 
