@@ -13,7 +13,10 @@ export const retrieveClientService = async (clientId: string) => {
       id: clientId
     }
   })
-  const returnClient: TClientResponse = clientSchemaResponse.parse(client)
 
-  return returnClient
+  if (client) {
+    return client
+  }
+
+  return "user doesn't exist"
 }
