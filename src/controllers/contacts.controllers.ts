@@ -24,9 +24,20 @@ export const listContactsController = async (
   res: Response
 ): Promise<Response> => {
   const { clientTokenId } = res.locals
-  const searchTerm = req.query.searchBy as string
-  console.log(searchTerm)
-  const contacts = await listContactsSerivce(clientTokenId, searchTerm)
+  const { searchBy } = req.query
+  const { filter } = req.query
+
+  const { page, pageSize } = req.query
+  const defaultPageSIze: number = Number(9)
+  const actualPageSize: number = Number(pageSize) || defaultPageSIze
+
+  const contacts = await listContactsSerivce(
+    clientTokenId,
+    String(searchBy),
+    Number(page || 1),
+    actualPageSize,
+    String(filter)
+  )
 
   return res.json(contacts)
 }
